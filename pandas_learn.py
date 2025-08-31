@@ -202,9 +202,9 @@ print(pivot_table_df) # e.g for pregnancy 5 and Outcome 0, the average BMI is 31
 # plt.show() # This opens up/displays the plot window -- not needed in Jupyter notebook as it is interactive
 
 # we can set the colors ourself e.g
-# df[["BMI", "Glucose"]].plot.line(figsize = (20, 10),
-#                                  color = {"BMI":"red", "Glucose":"blue"})
-# plt.show()
+df[["BMI", "Glucose"]].plot.line(figsize = (20, 10),
+                                 color = {"BMI":"red", "Glucose":"blue"})
+plt.show()
 
 # all the columns of the df can also be printed by using the subplots argument e.g
 df.plot.line(subplots = True)
