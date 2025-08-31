@@ -53,14 +53,14 @@ print(df2.isnull().sum().sum()) # total number of null values in the dataframe
 sorted_df = df.sort_values(by="Age", ascending=False) # sorting the dataframe by Age in descending order
 print(sorted_df) # using the inplace keyword changes the original dataframe and trying to wrap in print returns None.
 
-# sorted_df = df.sort_values(by=["Age", "Glucose"], ascending=[False, True]) # sorting the dataframe by Age in descending order and Glucose in ascending order
+sorted_df = df.sort_values(by=["Age", "Glucose"], ascending=[False, True]) # sorting the dataframe by Age in descending order and Glucose in ascending order
 print(sorted_df) # we can as well keep the inplace keyword and then go ahead and print df afterwards, prints the changed original df without having to assign
 
 # resetting the index as sorting might misalign the original index
 df.reset_index(drop=True, inplace=True) # drop=True to avoid adding the old index as a column
 print(df) # print the reset dataframe
 
-# sorted_df.reset_index(drop=True, inplace=True) # reset the index of the sorted dataframe
+sorted_df.reset_index(drop=True, inplace=True) # reset the index of the sorted dataframe
 print(sorted_df) # print the reset sorted dataframe
 
 # filtering data using conditions
@@ -117,13 +117,13 @@ print(df.loc[df["BloodPressure"] > 100, ["Pregnancies", "Glucose", "BloodPressur
 print(df2.isnull().sum()) # checking for missing values
 
 # dealing with missing values 
-# technique 1 -- dropping missing values
+# technique 1 -- dropping missing values -- recommended when the null rows are very small and dropping them won't affect the analysis
 df3 = df2.copy() # create a copy of the dataframe with missing values
 df3 = df3.dropna() # drop rows with any missing values
 print(df3.shape) # returns (764, 9) which is 4 rows less than df2
 print(df3.isnull().sum()) # verifying that there are no missing values
 
-# The axis keyword lets you drop the column with missing values totalling by setting it to 1
+# The axis keyword lets you drop the column with missing values totally by setting it to 1
 df3 = df2.copy() # create a copy of the dataframe with missing values
 df3.dropna(inplace=True, axis=1) # drops columns with any missing values
 print(df3.head()) # Notice that the columns with missing values are dropped e.g Pregnancies
@@ -198,8 +198,8 @@ print(pivot_table_df) # e.g for pregnancy 5 and Outcome 0, the average BMI is 31
 
 # visualization using pandas
 # pandas provide convenience wrappers to Matplotlib plotting functions to make it easy to visualize dataframes e.g
-# df[["BMI", "Glucose"]].plot.line() # line plot of BMI and Glucose vs the row index
-# plt.show() # This opens up/displays the plot window -- not needed in Jupyter notebook as it is interactive
+df[["BMI", "Glucose"]].plot.line() # line plot of BMI and Glucose vs the row index
+plt.show() # This opens up/displays the plot window -- not needed in Jupyter notebook as it is interactive
 
 # we can set the colors ourself e.g
 df[["BMI", "Glucose"]].plot.line(figsize = (20, 10),
